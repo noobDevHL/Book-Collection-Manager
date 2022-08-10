@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Overview of all books</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
-<body>
+<body class="d-flex flex-column text-primary" style="height: 100vh;">
+
+<!-- Navbar -->
+<div class="sticky-top">
+    <div class="bg-primary">
+        <div th:replace="navbar :: navbar"></div>
+    </div>
+<!-- Content -->
+    <div class="container-fluid">
 <h1> Alle Bücher in der Übersicht:</h1>
+
 <!--
 <h3>Filter</h3>
 <form>
@@ -13,6 +29,7 @@
     <input type="submit">
 </form>
 -->
+
 <div th:each="book : ${allBooks}">
     <span th:text="${'Title: ' + book.title + ', '}"></span>
     <span th:text="${'Author: ' + book.author + ', '}"> </span>
@@ -20,11 +37,17 @@
 </div>
 
 <form action="" method="post">
+    <fieldset>
+        <legend>Neues Buch hinzufügen</legend>
     <input type="text" name="title" placeholder="Titel">
     <input type="text" name="author" placeholder="Autor">
     <input type="text" name="isbn" placeholder="ISBN">
     <input type="submit">
+    </fieldset>
 </form>
-
+    <!-- Footer -->
+    <div th:replace="footer :: footer"></div>
+</div>
+</div>
 </body>
 </html>
