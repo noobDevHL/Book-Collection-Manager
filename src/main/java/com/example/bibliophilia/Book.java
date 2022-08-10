@@ -1,12 +1,20 @@
 package com.example.bibliophilia;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Repräsentation eines Buchs mit Titel, Autor und ISBN-Nummer
  *
  * @author Aline Hoffmann
  */
 
+@Entity
 public class Book {
+    @Id
+    @GeneratedValue
+    private Long id; // wird durch Annotationen automatisch erzeugt
 
     private String title;
     private String author;
@@ -40,5 +48,13 @@ public class Book {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
