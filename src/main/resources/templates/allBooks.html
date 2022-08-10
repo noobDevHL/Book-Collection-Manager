@@ -6,11 +6,13 @@
 </head>
 <body>
 <h1> Alle Bücher in der Übersicht:</h1>
+<!--
 <h3>Filter</h3>
 <form>
     <input type="text" name="authorFilter" th:value="${filter}">
     <input type="submit">
 </form>
+-->
 <div th:each="book : ${allBooks}">
     <span th:text="${'Title: ' + book.title + ', '}"></span>
     <span th:text="${'Author: ' + book.author + ', '}"> </span>

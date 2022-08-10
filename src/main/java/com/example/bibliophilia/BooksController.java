@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Controller zum Handling des Routings zwischen Server und Browser
@@ -17,18 +16,22 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/allBooks")
-public class AllBooksController {
+public class BooksController {
 
     @Autowired // Springboot-Annotation um Service automatisch zur Verfügung zu stellen
     private BookService _bookService;
 
     @GetMapping
-    public String showAllBooks(Model model, @RequestParam(required = false, defaultValue = "") String authorFilter) {
+    public String showBooks(Model model) {
+        model.addAttribute("allBooks", _bookService.getAllBooks());
+        return "allBooks";
+    }
+
+    /* public String showAllBooks(Model model, @RequestParam(required = false, defaultValue = "") String authorFilter) {
         model.addAttribute("allBooks", _bookService.filterByAuthor(authorFilter));
         model.addAttribute("filter", authorFilter);
         return "allBooks";
-    }
-    // "Reise um den Mond", "Jules Vernes", "978-3-596-52241-5"
+    } */
 
     @PostMapping
     public String createNewBook(Model model, @ModelAttribute Book book) {
