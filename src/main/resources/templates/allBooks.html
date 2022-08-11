@@ -7,6 +7,7 @@
 
     <title>Overview of all books</title>
 
+    <link rel="stylesheet" href="style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -16,8 +17,9 @@
 <!-- Navbar -->
 <div class="sticky-top">
     <div class="bg-primary">
-        <div th:replace="navbar :: navbar"></div>
+        <header th:replace="navbar :: navbar"></header>
     </div>
+</div>
 <!-- Content -->
     <div class="container-fluid">
 <h1> Alle Bücher in der Übersicht:</h1>
@@ -29,14 +31,15 @@
     <input type="submit">
 </form>
 -->
-
-<div th:each="book : ${allBooks}">
-    <span th:text="${'Title: ' + book.title + ', '}"></span>
-    <span th:text="${'Author: ' + book.author + ', '}"> </span>
-    <span th:text="${'ISBN: ' + book.isbn}"></span>
+<div class="drop-shadow">
+<div class="inner-shadow" th:each="book : ${allBooks}">
+    <p class="lead" th:text="${'Title: ' + book.title}"></p>
+    <p class="lead" th:text="${'Author: ' + book.author}"> </p>
+    <p class="lead" th:text="${'ISBN: ' + book.isbn}"></p>
+</div>
 </div>
 
-<form action="" method="post">
+<form method="post">
     <fieldset>
         <legend>Neues Buch hinzufügen</legend>
     <input type="text" name="title" placeholder="Titel">
@@ -46,8 +49,7 @@
     </fieldset>
 </form>
     <!-- Footer -->
-    <div th:replace="footer :: footer"></div>
-</div>
+    <footer th:replace="footer :: footer"></footer>
 </div>
 </body>
 </html>
