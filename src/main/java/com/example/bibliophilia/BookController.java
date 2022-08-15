@@ -24,6 +24,12 @@ public class BookController {
     @Autowired // Springboot-Annotation um Service automatisch zur Verfügung zu stellen
     private BookService _bookService;
 
+    /**
+     * Funktion um alle Buecher inklusiver Filter nach Attribut nach Get-Request an die View zu uebergeben
+     * @param model
+     * @param authorFilter
+     * @return anzuzeigende View
+     */
     @GetMapping
     public String showBooks(Model model, @RequestParam(required = false, defaultValue = "") String authorFilter) {
         model.addAttribute("allBooks", _bookService.getAllBooks());
@@ -32,6 +38,13 @@ public class BookController {
         return "allBooks";
     }
 
+    /**
+     * Funktion um nach Absenden des Formulars (Post-Request) alle Buecher an die View zu uebergeben
+     * @param bookDTO
+     * @param bindingResult
+     * @param model
+     * @return Weiterleitung zur anzuzeigenden View
+     */
     @PostMapping
     public String addNewBook(@ModelAttribute @Valid BookDTO bookDTO, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {

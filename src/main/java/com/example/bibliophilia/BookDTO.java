@@ -3,6 +3,11 @@ package com.example.bibliophilia;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * Data-Transfer-Objekt der Klasse Book
+ *
+ * @author Aline Hoffmann
+ */
 public class BookDTO {
 
     @NotEmpty
