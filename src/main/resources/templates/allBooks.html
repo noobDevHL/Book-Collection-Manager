@@ -23,34 +23,37 @@
 
 <!-- Content -->
 <div class="container-fluid">
-
 <!-- Formular neues Buch -->
-<form method="post">
+<form method="post" th:object="${bookDTO}" th:action="@{allBooks}">
     <fieldset>
         <legend>Neues Buch hinzufügen</legend>
-    <div class="mb-3">
-    <input type="text" class="form-control" name="title" placeholder="Titel">
-    <input type="text" class="form-control" name="author" placeholder="Autor">
-    <input type="text" class="form-control" name="isbn" placeholder="ISBN">
-    <input type="submit" class="btn btn-primary">
-    </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="title" placeholder="Titel">
+            <input type="text" class="form-control" name="author" placeholder="Autor">
+            <input type="text" class="form-control" name="isbn" placeholder="ISBN">
+            <input type="submit" class="btn btn-primary">
+        </div>
     </fieldset>
 </form>
 
 <!-- Anzeige Bücher -->
-    <h3>Alle Bücher</h3>
+<div class="mb-3">
+<h3>Alle Bücher</h3>
     <div class="row my-1 text-primary">
-            <div class="col-11 d-flex justify-content-between">
-                <div class="col-3">Titel</div>
-                <div class="col-6">Autor</div>
-                <div class="col-3">ISBN</div>
-            </div>
+       <div class="col-11 d-flex justify-content-between">
+            <div class="col-3">Titel</div>
+            <div class="col-6">Autor</div>
+            <div class="col-3">ISBN</div>
+       </div>
     </div>
-<div th:object="${book}" th:each="book : ${allBooks}">
-    <div class="row">
-        <div class="col-3" th:text="*{title}"></div>
-        <div class="col-3" th:text="*{author}"></div>
-        <div class="col-3" th:text="*{isbn}"></div>
+    <div th:object="${book}" th:each="book : ${allBooks}">
+        <div class="row my-1 text-primary">
+            <div class="col-11 d-flex justify-content-between">
+                <div class="col-3" th:text="*{title}"></div>
+                <div class="col-3" th:text="*{author}"></div>
+                <div class="col-3" th:text="*{isbn}"></div>
+            </div>
+        </div>
     </div>
 </div>
 

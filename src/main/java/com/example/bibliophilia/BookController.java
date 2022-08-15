@@ -3,11 +3,14 @@ package com.example.bibliophilia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.validation.Valid;
 
 /**
  * Controller zum Handling des Routings zwischen Server und Browser
@@ -30,8 +33,11 @@ public class BookController {
     }
 
     @PostMapping
-    public String createNewBook(Model model, @ModelAttribute Book book) {
-        _bookService.add(book);
+    public String addNewBook(@ModelAttribute @Valid BookDTO bookDTO, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "allBooks";
+        }
+        _bookService.add(bookDTO);
         return "redirect:/allBooks";
     }
 

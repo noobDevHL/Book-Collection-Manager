@@ -1,9 +1,11 @@
 package com.example.bibliophilia;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +24,9 @@ public class BookService {
         return books.stream().filter(book -> book.getAuthor().contains(authorFilter)).collect(Collectors.toList());
     }
 
-    public void add(Book book) {
+    public void add(@Valid BookDTO bookDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        Book book = modelMapper.map(bookDTO, Book.class);
         allBooks.save(book);
     }
 
