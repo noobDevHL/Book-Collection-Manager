@@ -16,22 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping("/allBooks")
-public class BooksController {
+public class BookController {
 
     @Autowired // Springboot-Annotation um Service automatisch zur Verfügung zu stellen
     private BookService _bookService;
 
     @GetMapping
-    public String showBooks(Model model) {
+    public String showBooks(Model model, @RequestParam(required = false, defaultValue = "") String authorFilter) {
         model.addAttribute("allBooks", _bookService.getAllBooks());
-        return "allBooks";
-    }
-
-    /* public String showAllBooks(Model model, @RequestParam(required = false, defaultValue = "") String authorFilter) {
         model.addAttribute("allBooks", _bookService.filterByAuthor(authorFilter));
         model.addAttribute("filter", authorFilter);
         return "allBooks";
-    } */
+    }
 
     @PostMapping
     public String createNewBook(Model model, @ModelAttribute Book book) {

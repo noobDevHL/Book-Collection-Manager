@@ -20,34 +20,50 @@
         <header th:replace="navbar :: navbar"></header>
     </div>
 </div>
+
 <!-- Content -->
-    <div class="container-fluid">
-<h1> Alle Bücher in der Übersicht:</h1>
+<div class="container-fluid">
 
-<!--
-<h3>Filter</h3>
-<form>
-    <input type="text" name="authorFilter" th:value="${filter}">
-    <input type="submit">
-</form>
--->
-<div class="drop-shadow">
-<div class="inner-shadow" th:each="book : ${allBooks}">
-    <p class="lead" th:text="${'Title: ' + book.title}"></p>
-    <p class="lead" th:text="${'Author: ' + book.author}"> </p>
-    <p class="lead" th:text="${'ISBN: ' + book.isbn}"></p>
-</div>
-</div>
-
+<!-- Formular neues Buch -->
 <form method="post">
     <fieldset>
         <legend>Neues Buch hinzufügen</legend>
-    <input type="text" name="title" placeholder="Titel">
-    <input type="text" name="author" placeholder="Autor">
-    <input type="text" name="isbn" placeholder="ISBN">
-    <input type="submit">
+    <div class="mb-3">
+    <input type="text" class="form-control" name="title" placeholder="Titel">
+    <input type="text" class="form-control" name="author" placeholder="Autor">
+    <input type="text" class="form-control" name="isbn" placeholder="ISBN">
+    <input type="submit" class="btn btn-primary">
+    </div>
     </fieldset>
 </form>
+
+<!-- Anzeige Bücher -->
+    <h3>Alle Bücher</h3>
+    <div class="row my-1 text-primary">
+            <div class="col-11 d-flex justify-content-between">
+                <div class="col-3">Titel</div>
+                <div class="col-6">Autor</div>
+                <div class="col-3">ISBN</div>
+            </div>
+    </div>
+<div th:object="${book}" th:each="book : ${allBooks}">
+    <div class="row">
+        <div class="col-3" th:text="*{title}"></div>
+        <div class="col-3" th:text="*{author}"></div>
+        <div class="col-3" th:text="*{isbn}"></div>
+    </div>
+</div>
+
+<!-- Filter -->
+<h3>Filter</h3>
+    <form>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="authorFilter" th:value="${filter}">
+            <input type="submit" class="btn btn-primary">
+        </div>
+    </form>
+
+
     <!-- Footer -->
     <footer th:replace="footer :: footer"></footer>
 </div>

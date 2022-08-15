@@ -17,9 +17,10 @@ public class BookService {
     @Autowired // dient der Erzeugung des BookRepository, weil man ein Interface nicht instanziieren kann
     private BookRepository allBooks;
 
-  /*  public List<Book> filterByAuthor(String authorFilter) {
-        return allBooks.stream().filter(book -> book.getAuthor().contains(authorFilter)).collect(Collectors.toList());
-    }*/
+    public List<Book> filterByAuthor(String authorFilter) {
+        List<Book> books = (List<Book>) getAllBooks();
+        return books.stream().filter(book -> book.getAuthor().contains(authorFilter)).collect(Collectors.toList());
+    }
 
     public void add(Book book) {
         allBooks.save(book);

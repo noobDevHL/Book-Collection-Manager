@@ -16,42 +16,42 @@ public class Book {
     @GeneratedValue
     private Long id; // wird durch Annotationen automatisch erzeugt
 
-    private String title;
-    private String author;
-    private String isbn;
+    private String _title;
+    private String _author;
+    private String _isbn;
 
     public Book() {
         // required by Hibernate
     }
 
     public Book(String title, String author, String isbn) {
-        this.title = title;
-        this.author = author;
-        this.isbn = isbn;
+        this._title = title;
+        this._author = author;
+        this._isbn = isbn;
     }
 
     public String getTitle() {
-        return title;
+        return _title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this._title = title;
     }
 
     public String getAuthor() {
-        return author;
+        return _author;
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        this._author = author;
     }
 
     public String getIsbn() {
-        return isbn;
+        return _isbn;
     }
 
     public void setIsbn(String isbn) {
-        this.isbn = isbn;
+        this._isbn = isbn;
     }
 
     public Long getId() {
