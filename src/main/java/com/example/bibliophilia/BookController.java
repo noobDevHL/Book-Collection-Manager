@@ -32,25 +32,29 @@ public class BookController {
      */
     @GetMapping
     public String showBooks(Model model, @RequestParam(required = false, defaultValue = "") String authorFilter) {
+        model.addAttribute("bookDto", new BookDto());
         model.addAttribute("allBooks", _bookService.getAllBooks());
+
         model.addAttribute("allBooks", _bookService.filterByAuthor(authorFilter));
         model.addAttribute("filter", authorFilter);
+
         return "allBooks";
     }
 
     /**
      * Funktion um nach Absenden des Formulars (Post-Request) alle Buecher an die View zu uebergeben
-     * @param bookDTO
+     * @param bookDto
      * @param bindingResult
      * @param model
      * @return Weiterleitung zur anzuzeigenden View
      */
-    @PostMapping
-    public String addNewBook(@ModelAttribute @Valid BookDTO bookDTO, BindingResult bindingResult, Model model) {
+    @PostMapping("/addBook")
+    public String addNewBook(@ModelAttribute @Valid BookDto bookDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            System.out.println("There was an error "+bindingResult);
             return "allBooks";
         }
-        _bookService.add(bookDTO);
+        _bookService.add(bookDto);
         return "redirect:/allBooks";
     }
 

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
  *
  * @author Aline Hoffmann
  */
-public class BookDTO {
+public class BookDto {
 
     @NotEmpty
     @NotBlank

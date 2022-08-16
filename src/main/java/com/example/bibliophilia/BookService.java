@@ -31,11 +31,11 @@ public class BookService {
 
     /**
      * Funktion um ein neues Buch ins BookRepository hinzuzufuegen
-     * @param bookDTO Buch-Objekt, dass hinzugefuegt werden soll
+     * @param bookDto Buch-Objekt, dass hinzugefuegt werden soll
      */
-    public void add(@Valid BookDTO bookDTO) {
+    public void add(@Valid BookDto bookDto) {
         ModelMapper modelMapper = new ModelMapper();
-        Book book = modelMapper.map(bookDTO, Book.class);
+        Book book = modelMapper.map(bookDto, Book.class);
         allBooks.save(book);
     }
 
@@ -43,7 +43,7 @@ public class BookService {
      * Funktion um alle Buecher aus dem BookRepository zu lesen
      * @return Liste mit allen Buechern
      */
-    public Iterable<Book> getAllBooks() {
+    public List<Book> getAllBooks() {
         //TODO: Sortierfunktion implementieren
         return allBooks.findAll();
     }
