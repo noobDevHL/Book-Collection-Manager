@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <!-- Required meta tags -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -23,18 +23,7 @@
 
 <!-- Content -->
 <div class="container-fluid">
-<!-- Formular neues Buch -->
-<form method="post" th:object="${bookDto}" th:action="@{allBooks/addBook}">
-    <fieldset>
-        <legend>Neues Buch hinzufügen</legend>
-        <div class="mb-3">
-            <input type="text" class="form-control" th:field="*{title}" placeholder="Titel">
-            <input type="text" class="form-control" th:field="*{author}" placeholder="Autor">
-            <input type="text" class="form-control" th:field="*{isbn}" placeholder="ISBN">
-            <input type="submit" class="btn btn-primary">
-        </div>
-    </fieldset>
-</form>
+
 
 <!-- Anzeige Bücher -->
 <div class="mb-3">
@@ -67,10 +56,10 @@
             <input type="submit" class="btn btn-primary">
         </div>
     </form>
-
+</div>
+</div>
 
     <!-- Footer -->
     <footer th:replace="footer :: footer"></footer>
-</div>
 </body>
 </html>

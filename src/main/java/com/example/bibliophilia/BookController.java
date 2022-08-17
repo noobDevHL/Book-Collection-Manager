@@ -42,6 +42,12 @@ public class BookController {
         return "allBooks";
     }
 
+    @GetMapping("/newBook")
+    public String newBook(Model model) {
+        model.addAttribute("bookDto", new BookDto());
+        return "newBook";
+    }
+
     /**
      * Funktion um nach Absenden des Formulars (Post-Request) alle Buecher an die View zu uebergeben
      * @param bookDto
