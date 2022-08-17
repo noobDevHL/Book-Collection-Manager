@@ -25,7 +25,7 @@ public class BookService {
      * @return Liste mit Buechern vom ausgewaehlten Autor
      */
     public List<Book> filterByAuthor(String authorFilter) {
-        List<Book> books = (List<Book>) getAllBooks();
+        List<Book> books = getAllBooks();
         return books.stream().filter(book -> book.getAuthor().contains(authorFilter)).collect(Collectors.toList());
     }
 
@@ -46,5 +46,13 @@ public class BookService {
     public List<Book> getAllBooks() {
         //TODO: Sortierfunktion implementieren
         return allBooks.findAll();
+    }
+
+    /**
+     * Funktion zum loeschen eines Buchs
+     * @param id ID des Buchs, das geloescht werden soll
+     */
+    public void deleteBook(Long id) {
+        allBooks.deleteById(id);
     }
 }

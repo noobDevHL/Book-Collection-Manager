@@ -44,6 +44,7 @@
             <div class="col-3">Titel</div>
             <div class="col-3">Autor</div>
             <div class="col-3">ISBN</div>
+           <div class="col-3"></div>
        </div>
     </div>
     <div th:object="${book}" th:each="book : ${allBooks}">
@@ -52,6 +53,7 @@
                 <div class="col-3" th:text="*{title}"></div>
                 <div class="col-3" th:text="*{author}"></div>
                 <div class="col-3" th:text="*{isbn}"></div>
+                <div class="col-3"><a th:href="@{allBooks/deleteBook/{id}(id=*{id})}"><button class="btn btn-primary">Löschen</button></a>
             </div>
         </div>
     </div>

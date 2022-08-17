@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,6 +56,12 @@ public class BookController {
             return "allBooks";
         }
         _bookService.add(bookDto);
+        return "redirect:/allBooks";
+    }
+
+    @GetMapping("/deleteBook/{id}")
+    public String deleteBook(@PathVariable("id") long id, Model model) {
+        _bookService.deleteBook(id);
         return "redirect:/allBooks";
     }
 

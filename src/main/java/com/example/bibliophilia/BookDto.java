@@ -2,6 +2,7 @@ package com.example.bibliophilia;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * Data-Transfer-Objekt der Klasse Book
@@ -12,6 +13,7 @@ public class BookDto {
 
     @NotEmpty
     @NotBlank
+    @NotNull
     private String title;
 
     @NotEmpty
