@@ -42,10 +42,27 @@ public class BookController {
         return "allBooks";
     }
 
+    /**
+     * Funktion um Formular zur Anlage eines neuen Buchs anzuzeigen
+     * @param model
+     * @return anzuzeigende View
+     */
     @GetMapping("/newBook")
     public String newBook(Model model) {
         model.addAttribute("bookDto", new BookDto());
         return "newBook";
+    }
+
+    /**
+     * Funktion zum Loeschen eines Buchs aus der Sammlung
+     * @param id ID des Buchs, das geloescht werden soll
+     * @param model
+     * @return Weiterleitung zur anzuzeigenden View
+     */
+    @GetMapping("/deleteBook/{id}")
+    public String deleteBook(@PathVariable("id") long id, Model model) {
+        _bookService.deleteBook(id);
+        return "redirect:/allBooks";
     }
 
     /**
@@ -65,11 +82,6 @@ public class BookController {
         return "redirect:/allBooks";
     }
 
-    @GetMapping("/deleteBook/{id}")
-    public String deleteBook(@PathVariable("id") long id, Model model) {
-        _bookService.deleteBook(id);
-        return "redirect:/allBooks";
-    }
 
     /*
     Alternative zum GetMapping mit View als String-Rückgabe und Model als Parameter.
