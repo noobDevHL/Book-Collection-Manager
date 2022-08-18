@@ -30,6 +30,7 @@
         <fieldset>
             <legend>Neues Buch hinzufügen</legend>
             <div class="mb-3">
+                <input type="text" class="form-control" th:field="*{id}" hidden>
                 <input type="text" class="form-control" th:field="*{title}" placeholder="Titel">
                 <input type="text" class="form-control" th:field="*{author}" placeholder="Autor">
                 <input type="text" class="form-control" th:field="*{isbn}" placeholder="ISBN">
