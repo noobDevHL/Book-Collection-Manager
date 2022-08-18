@@ -19,7 +19,7 @@ import javax.validation.Valid;
  * @author Aline Hoffmann
  */
 @Controller
-@RequestMapping("/allBooks")
+@RequestMapping("/")
 public class BookController {
 
     @Autowired // Springboot-Annotation um Service automatisch zur Verfügung zu stellen
@@ -31,7 +31,7 @@ public class BookController {
      * @param authorFilter
      * @return anzuzeigende View
      */
-    @GetMapping
+    @GetMapping("/allBooks")
     public String showBooks(Model model, @RequestParam(required = false, defaultValue = "") String authorFilter) {
         model.addAttribute("bookDto", new BookDto());
         model.addAttribute("allBooks", _bookService.getAllBooks());
@@ -82,6 +82,18 @@ public class BookController {
         return "redirect:/allBooks";
     }
 
+    @GetMapping("/editBook/{id}")
+    public String editBook(@PathVariable("id") long id, Model model) {
+        model.addAttribute("bookDto", _bookService.findBook(id));
+        return "editBook";
+    }
+
+    @PostMapping("/editBook/saveBook")
+    public String saveBook(@ModelAttribute @Valid BookDto bookDto, BindingResult bindingResult, Model model) {
+        // TODO
+        _bookService.saveBook(bookDto);
+        return "redirect:/allBooks";
+    }
 
     /*
     Alternative zum GetMapping mit View als String-Rückgabe und Model als Parameter.

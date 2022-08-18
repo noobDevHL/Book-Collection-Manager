@@ -2,11 +2,11 @@ package com.example.bibliophilia;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -34,9 +34,7 @@ public class BookService {
      * @param bookDto Buch-Objekt, dass hinzugefuegt werden soll
      */
     public void add(@Valid BookDto bookDto) {
-        ModelMapper modelMapper = new ModelMapper();
-        Book book = modelMapper.map(bookDto, Book.class);
-        allBooks.save(book);
+        allBooks.save(convertDtoToBook(bookDto));
     }
 
     /**
@@ -44,7 +42,7 @@ public class BookService {
      * @return Liste mit allen Buechern
      */
     public List<Book> getAllBooks() {
-        //TODO: Sortierfunktion implementieren
+        //TO-DO: Sortierfunktion implementieren
         return allBooks.findAll();
     }
 
@@ -55,4 +53,38 @@ public class BookService {
     public void deleteBook(Long id) {
         allBooks.deleteById(id);
     }
+
+    /**
+     * Funktion um ein Buch anhand der ID zu suchen
+     * @param id
+     * @return das gesuchte Buch
+     */
+    public Book findBook(Long id) {
+        Book book = allBooks.findById(id).get();
+        return book;
+    }
+
+    /**
+     * Funktion um eine Aenderung an einem existierenden Buch zu speichern
+     * @param bookDto
+     */
+    public void saveBook(@Valid BookDto bookDto) {
+        Book book = convertDtoToBook(bookDto);
+        allBooks.save(book);
+    }
+
+    /**
+     * Funktion zum Wandeln des Materials BookDto zu einer Entity Book
+     * @param bookDto
+     * @return
+     */
+    private Book convertDtoToBook(BookDto bookDto) {
+        Book book = allBooks.findById(bookDto.getId()).get();
+        book.setTitle(bookDto.getTitle());
+        book.setAuthor(bookDto.getAuthor());
+        book.setIsbn(bookDto.getIsbn());
+        return book;
+    }
+
+    //TODO Convert von Book zu Dto
 }

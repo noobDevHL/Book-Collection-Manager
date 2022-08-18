@@ -7,9 +7,11 @@
 
     <title>Overview of all books</title>
 
-    <link rel="stylesheet" href="style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Override Boostrap CSS -->
+    <link rel="stylesheet" th:href="@{css/bootstrap-overrides.css}" >
 
 </head>
 <body class="d-flex flex-column text-primary" style="height: 100vh;">
@@ -23,17 +25,30 @@
 
 <!-- Content -->
 <div class="container-fluid">
-
+    <!-- Filter -->
+    <form>
+        <div class="form-group">
+        <fieldset>
+            <legend>Filter</legend>
+            <input class="form-control-input" type="radio" name="filter" id="filter1" value="author" checked>
+            <label class="form-control-label" for="filter1">
+                Autor
+            </label>
+            <input type="text" class="form-control" name="authorFilter" th:value="${filter}" placeholder="Autor eingeben">
+            <input type="submit" class="btn btn-primary">
+        </fieldset>
+        </div>
+    </form>
 
 <!-- Anzeige Bücher -->
-<div class="mb-3">
-<h3>Alle Bücher</h3>
+<div class="container-fluid">
+<legend>Alle Bücher</legend>
     <div class="row my-1 text-primary">
        <div class="col-11 d-flex justify-content-between">
             <div class="col-3">Titel</div>
             <div class="col-3">Autor</div>
             <div class="col-3">ISBN</div>
-           <div class="col-3"></div>
+            <div class="col-3"></div>
        </div>
     </div>
     <div th:object="${book}" th:each="book : ${allBooks}">
@@ -42,20 +57,19 @@
                 <div class="col-3" th:text="*{title}"></div>
                 <div class="col-3" th:text="*{author}"></div>
                 <div class="col-3" th:text="*{isbn}"></div>
-                <div class="col-3"><a th:href="@{allBooks/deleteBook/{id}(id=*{id})}"><button class="btn btn-primary">Löschen</button></a>
+                <div class="col-3">
+                    <a th:href="@{deleteBook/{id}(id=*{id})}">
+                    <button class="btn btn-primary">Löschen</button>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a th:href="@{editBook/{id}(id=*{id})}">
+                    <button class="btn btn-primary">Bearbeiten</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<!-- Filter -->
-<h3>Filter</h3>
-    <form>
-        <div class="mb-3">
-            <input type="text" class="form-control" name="authorFilter" th:value="${filter}">
-            <input type="submit" class="btn btn-primary">
-        </div>
-    </form>
 </div>
 </div>
 

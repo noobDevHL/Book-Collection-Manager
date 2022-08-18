@@ -11,6 +11,8 @@ import javax.validation.constraints.NotNull;
  */
 public class BookDto {
 
+    private Long id;
+
     @NotEmpty
     @NotBlank
     @NotNull
@@ -23,7 +25,6 @@ public class BookDto {
     @NotEmpty
     @NotBlank
     private String isbn;
-
 
     public String getTitle() {
         return title;
@@ -47,5 +48,13 @@ public class BookDto {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

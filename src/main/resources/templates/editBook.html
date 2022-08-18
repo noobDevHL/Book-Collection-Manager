@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <!-- Required meta tags -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Overview of all books</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Override Boostrap CSS -->
+  <link rel="stylesheet" th:href="@{~/css/bootstrap-overrides.css}" >
+
+</head>
+<body class="d-flex flex-column text-primary" style="height: 100vh;">
+
+<!-- Navbar -->
+<div class="sticky-top">
+  <div class="bg-primary">
+    <header th:replace="navbar :: navbar"></header>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="container-fluid">
+
+  <!-- Formular Buch bearbeiten -->
+
+  <form method="post" th:object="${bookDto}" th:action="@{saveBook}">
+    <fieldset>
+      <legend>Buch bearbeiten</legend>
+      <div class="mb-3">
+        <input type="text" class="form-control" th:field="*{id}" hidden>
+        <input type="text" class="form-control" th:field="*{title}">
+        <input type="text" class="form-control" th:field="*{author}">
+        <input type="text" class="form-control" th:field="*{isbn}">
+        <input type="submit" class="btn btn-primary">
+      </div>
+    </fieldset>
+  </form>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+h3, legend, button, p, a, .col-3, .form-control-label {
+color: #5E9387;
+}
+
+.btn-primary {
+background-color: #5E9387;
+border: #5E9387;
+}
+
+.form-control-input {
+border: #5E9387;
+background-color: #5E9387;
+}
+
+.form-group{
+flex: 1;
+margin-left: 16px;
+margin-right: 40px;
+}
+
+.mb-3 {
+flex:2;
+}
