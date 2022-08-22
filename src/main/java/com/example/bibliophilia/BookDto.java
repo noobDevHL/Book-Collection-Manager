@@ -13,17 +13,16 @@ public class BookDto {
 
     private Long id;
 
-    @NotEmpty
-    @NotBlank
-    @NotNull
+    @NotEmpty(message = "Titel muss angegeben werden")
+    @NotBlank(message = "Titel darf nicht nur aus Leerzeichen bestehen")
     private String title;
 
-    @NotEmpty
-    @NotBlank
+    @NotEmpty(message = "Autor muss angegeben werden")
+    @NotBlank(message = "Titel darf nicht nur aus Leerzeichen bestehen")
     private String author;
 
-    @NotEmpty
-    @NotBlank
+    @NotEmpty(message = "ISBN muss angegeben werden")
+    @NotBlank(message = "ISBN darf nicht nur aus Leerzeichen bestehen")
     private String isbn;
 
     public String getTitle() {

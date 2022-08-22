@@ -42,7 +42,7 @@ public class BookService {
      * @return Liste mit allen Buechern
      */
     public List<Book> getAllBooks() {
-        //TO-DO: Sortierfunktion implementieren
+        //TODO: Sortierfunktion implementieren
         return allBooks.findAll();
     }
 
@@ -69,7 +69,8 @@ public class BookService {
      * @param bookDto
      */
     public void saveBook(@Valid BookDto bookDto) {
-        Book book = convertDtoToBook(bookDto);
+        Book book = allBooks.findById(bookDto.getId()).get();
+        book = convertDtoToBook(bookDto);
         allBooks.save(book);
     }
 
@@ -79,12 +80,21 @@ public class BookService {
      * @return
      */
     private Book convertDtoToBook(BookDto bookDto) {
-        Book book = allBooks.findById(bookDto.getId()).get();
+        Book book = new Book();
+        book.setId(bookDto.getId());
         book.setTitle(bookDto.getTitle());
         book.setAuthor(bookDto.getAuthor());
         book.setIsbn(bookDto.getIsbn());
         return book;
     }
 
-    //TODO Convert von Book zu Dto
+
+    private BookDto convertBookToDto(Book book) {
+        BookDto bookDto = new BookDto();
+        bookDto.setId(book.getId());
+        bookDto.setTitle(book.getTitle());
+        bookDto.setAuthor(book.getAuthor());
+        bookDto.setIsbn(book.getIsbn());
+        return  bookDto;
+    }
 }

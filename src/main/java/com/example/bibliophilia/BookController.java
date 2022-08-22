@@ -75,9 +75,10 @@ public class BookController {
     @PostMapping("/addBook")
     public String addNewBook(@ModelAttribute @Valid BookDto bookDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            System.out.println("There was an error "+bindingResult);
-            return "allBooks";
+           bindingResult.getFieldError();
+            return "newBook";
         }
+        model.addAttribute(bookDto);
         _bookService.add(bookDto);
         return "redirect:/allBooks";
     }

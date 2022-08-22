@@ -3,6 +3,8 @@ package com.example.bibliophilia;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * Repräsentation eines Buchs mit Titel, Autor und ISBN-Nummer
@@ -29,6 +31,8 @@ public class Book {
         this._author = author;
         this._isbn = isbn;
     }
+
+
 
     public String getTitle() {
         return _title;
