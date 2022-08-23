@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -39,15 +42,44 @@ public class BookService {
 
     /**
      * Funktion um alle Buecher aus dem BookRepository zu lesen
+     * per default alphabetisch nach Titel sortiert
      * @return Liste mit allen Buechern
      */
     public List<Book> getAllBooks() {
-        //TODO: Sortierfunktion implementieren
-        return allBooks.findAll();
+        if(allBooks.findAll() != null) {
+        return sortByTitleAsc(allBooks.findAll());
+        } else {
+            return allBooks.findAll();
+        }
+
     }
 
     /**
-     * Funktion zum loeschen eines Buchs
+     * Funktion zum alphabetischen Sortieren der Buecher nach Autorenvorname
+     * @param books alle eingetragenen Buecher
+     * @return sortierte Liste
+     */
+    public List<Book> sortByAuthorAsc(List<Book> books) {
+        List<Book> sortedBooks = books.stream()
+                .sorted(Comparator.comparing(Book::getAuthor))
+                .collect(Collectors.toList());
+        return sortedBooks;
+    }
+
+    /**
+     * Funktion zum alphabetischen Sortieren der Buecher nach Titel
+     * @param books alle eingetragenen Buecher
+     * @return sortierte Liste
+     */
+    public List<Book> sortByTitleAsc(List<Book> books) {
+        List<Book> sortedBooks = books.stream()
+                .sorted(Comparator.comparing(Book::getTitle))
+                .collect(Collectors.toList());
+        return sortedBooks;
+    }
+
+    /**
+     * Funktion zum Loeschen eines Buchs
      * @param id ID des Buchs, das geloescht werden soll
      */
     public void deleteBook(Long id) {

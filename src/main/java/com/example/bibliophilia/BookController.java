@@ -91,7 +91,10 @@ public class BookController {
 
     @PostMapping("/editBook/saveBook")
     public String saveBook(@ModelAttribute @Valid BookDto bookDto, BindingResult bindingResult, Model model) {
-        // TODO
+        if (bindingResult.hasErrors()) {
+            bindingResult.getFieldError();
+            return "editBook";
+        }
         _bookService.saveBook(bookDto);
         return "redirect:/allBooks";
     }

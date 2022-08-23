@@ -33,8 +33,11 @@
       <div class="mb-3">
         <input type="text" class="form-control" th:field="*{id}" hidden>
         <input type="text" class="form-control" th:field="*{title}">
+        <p th:errors="*{title}"/>
         <input type="text" class="form-control" th:field="*{author}">
+        <p th:errors="*{author}"/>
         <input type="text" class="form-control" th:field="*{isbn}">
+        <p th:errors="*{isbn}"/>
         <input type="submit" class="btn btn-primary">
       </div>
     </fieldset>
