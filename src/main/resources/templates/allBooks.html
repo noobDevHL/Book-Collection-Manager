@@ -14,50 +14,63 @@
     <link rel="stylesheet" th:href="@{css/bootstrap-overrides.css}" >
 
 </head>
-<body class="d-flex flex-column text-primary" style="height: 100vh;">
+<body class="d-flex flex-column text-primary" style="height: 100vh; margin: 0; padding:0">
 
 <!-- Navbar -->
 <div class="sticky-top">
-    <div class="bg-primary">
+    <div class="bg-primary border-bottom">
         <header th:replace="navbar :: navbar"></header>
     </div>
 </div>
 
 <!-- Content -->
-<div class="container-fluid">
+<div class="d-flex flex-row" style="height: 100vh">
+    <div class="form-group col border-right">
     <!-- Filter -->
-    <form>
-        <div class="form-group">
+    <form method="get" th:action="@{filtered}">
         <fieldset>
-            <legend>Filter</legend>
-            <input class="form-control-input" type="radio" name="filter" id="filter1" value="author" checked>
-            <label class="form-control-label" for="filter1">
+            <legend>Filtern nach</legend>
+            <input class="form-control-input" type="radio" name="filter" id="filter1" value="title">
+            <label class="form-control-label" for="filter1">Titel</label>
+            <input class="form-control-input" type="radio" name="filter" id="filter2" value="author">
+            <label class="form-control-label" for="filter2">
                 Autor
             </label>
-            <input type="text" class="form-control" name="authorFilter" th:value="${filter}" placeholder="Autor eingeben">
+            <input type="text" class="form-control" name="search" th:value="${search}" placeholder="Suchbegriff eingeben">
             <input type="submit" class="btn btn-primary">
         </fieldset>
-        </div>
     </form>
+        <!-- Sortierung -->
+    <form method="get" th:action="@{sorted}">
+        <fieldset>
+            <legend>Sortieren nach</legend>
+            <input class="form-control-input" type="radio" name="sort" id="sort1" value="title">
+            <label class="form-control-label" for="sort1">Titel</label>
+            <input class="form-control-input" type="radio" name="sort" id="sort2" value="author">
+            <label class="form-control-label" for="sort2">Autor</label><br>
+            <input type="submit" class="btn btn-primary">
+        </fieldset>
+    </form>
+    </div>
 
 <!-- Anzeige Bücher -->
-<div class="container-fluid">
+<div class="container">
 <legend>Alle Bücher</legend>
     <div class="row my-1 text-primary">
-       <div class="col-11 d-flex justify-content-between">
-            <div class="col-3">Titel</div>
-            <div class="col-3">Autor</div>
-            <div class="col-3">ISBN</div>
+       <div class="col-10 d-flex justify-content-between">
+            <div class="col-3 font-weight-bold">Titel</div>
+            <div class="col-3 font-weight-bold">Autor</div>
+            <div class="col-3 font-weight-bold">ISBN</div>
             <div class="col-3"></div>
        </div>
     </div>
     <div th:object="${book}" th:each="book : ${allBooks}">
         <div class="row my-1 text-primary">
-            <div class="col-11 d-flex justify-content-between">
+            <div class="col-10 d-flex justify-content-between">
                 <div class="col-3" th:text="*{title}"></div>
                 <div class="col-3" th:text="*{author}"></div>
                 <div class="col-3" th:text="*{isbn}"></div>
-                <div class="col-3">
+                <div class="col-2">
                     <a th:href="@{deleteBook/{id}(id=*{id})}">
                     <button class="btn btn-primary">Löschen</button>
                     </a>

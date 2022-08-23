@@ -28,16 +28,35 @@ public class BookController {
     /**
      * Funktion um alle Buecher inklusiver Filter nach Attribut nach Get-Request an die View zu uebergeben
      * @param model
-     * @param authorFilter
+     * @param filter
      * @return anzuzeigende View
      */
     @GetMapping("/allBooks")
-    public String showBooks(Model model, @RequestParam(required = false, defaultValue = "") String authorFilter) {
+    public String showBooks(Model model) {
         model.addAttribute("bookDto", new BookDto());
         model.addAttribute("allBooks", _bookService.getAllBooks());
 
-        model.addAttribute("allBooks", _bookService.filterByAuthor(authorFilter));
-        model.addAttribute("filter", authorFilter);
+        return "allBooks";
+    }
+
+    @GetMapping("/filtered")
+    public String showFilteredBooks(Model model,
+                                    @RequestParam(required = false, defaultValue = "") String search,
+                                    @RequestParam(required = false, defaultValue = "") String filter) {
+        model.addAttribute("bookDto", new BookDto());
+        model.addAttribute("allBooks", _bookService.getAllBooks());
+        model.addAttribute("allBooks", _bookService.filterBy(search, filter));
+        model.addAttribute("search", search);
+        model.addAttribute("filter", filter);
+
+        return "allBooks";
+    }
+
+    @GetMapping("/sorted")
+    public String showSortedBooks(Model model, @RequestParam(required = false, defaultValue = "") String sort) {
+        model.addAttribute("bookDto", new BookDto());
+        model.addAttribute("allBooks", _bookService.sortBy(sort));
+        model.addAttribute("sort", sort);
 
         return "allBooks";
     }

@@ -1,5 +1,6 @@
 package com.example.bibliophilia;
 
+import net.bytebuddy.TypeCache;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,16 +24,6 @@ public class BookService {
     private BookRepository allBooks;
 
     /**
-     * Funktion zum Filtern der Buecher nach Autor
-     * @param authorFilter Name des Autors, nach dem gefiltert werden soll
-     * @return Liste mit Buechern vom ausgewaehlten Autor
-     */
-    public List<Book> filterByAuthor(String authorFilter) {
-        List<Book> books = getAllBooks();
-        return books.stream().filter(book -> book.getAuthor().contains(authorFilter)).collect(Collectors.toList());
-    }
-
-    /**
      * Funktion um ein neues Buch ins BookRepository hinzuzufuegen
      * @param bookDto Buch-Objekt, dass hinzugefuegt werden soll
      */
@@ -46,35 +37,42 @@ public class BookService {
      * @return Liste mit allen Buechern
      */
     public List<Book> getAllBooks() {
-        if(allBooks.findAll() != null) {
-        return sortByTitleAsc(allBooks.findAll());
-        } else {
             return allBooks.findAll();
         }
 
+    /**
+     * Funktion zum Filtern der Buecher nach Autor
+     * @param search Name des Autors, nach dem gefiltert werden soll
+     * @return Liste mit Buechern vom ausgewaehlten Autor
+     */
+    public List<Book> filterBy(String search, String filter) {
+        List<Book> filteredBooks = getAllBooks();
+        if(filter.equals("title")) {
+            filteredBooks = filteredBooks.stream().filter(book -> book.getTitle().
+                    contains(search)).collect(Collectors.toList());
+        } else {
+            filteredBooks = filteredBooks.stream().filter(book -> book.getAuthor().
+                    contains(search)).collect(Collectors.toList());
+        }
+        return filteredBooks;
     }
 
     /**
      * Funktion zum alphabetischen Sortieren der Buecher nach Autorenvorname
-     * @param books alle eingetragenen Buecher
+     * @param sort
      * @return sortierte Liste
      */
-    public List<Book> sortByAuthorAsc(List<Book> books) {
-        List<Book> sortedBooks = books.stream()
-                .sorted(Comparator.comparing(Book::getAuthor))
-                .collect(Collectors.toList());
-        return sortedBooks;
-    }
-
-    /**
-     * Funktion zum alphabetischen Sortieren der Buecher nach Titel
-     * @param books alle eingetragenen Buecher
-     * @return sortierte Liste
-     */
-    public List<Book> sortByTitleAsc(List<Book> books) {
-        List<Book> sortedBooks = books.stream()
-                .sorted(Comparator.comparing(Book::getTitle))
-                .collect(Collectors.toList());
+    public List<Book> sortBy(String sort) {
+        List<Book> sortedBooks = getAllBooks();
+        if(sort.equals("author")) {
+            sortedBooks = sortedBooks.stream()
+                    .sorted(Comparator.comparing(Book::getAuthor))
+                    .collect(Collectors.toList());
+        } else {
+            sortedBooks = sortedBooks.stream()
+                    .sorted(Comparator.comparing(Book::getTitle))
+                    .collect(Collectors.toList());
+        }
         return sortedBooks;
     }
 
