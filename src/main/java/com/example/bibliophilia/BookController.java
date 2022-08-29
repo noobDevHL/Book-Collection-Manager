@@ -22,7 +22,7 @@ import javax.validation.Valid;
 @RequestMapping("/")
 public class BookController {
 
-    @Autowired // Springboot-Annotation um Service automatisch zur Verfügung zu stellen
+    @Autowired
     private BookService _bookService;
 
     @GetMapping("/allBooks")

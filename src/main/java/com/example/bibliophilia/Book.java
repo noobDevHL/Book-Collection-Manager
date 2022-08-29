@@ -1,17 +1,12 @@
 package com.example.bibliophilia;
 
-import javax.persistence.Column;
 import javax.persistence.Embedded;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 /**
- * Repräsentation eines Buchs mit Titel, Autor und ISBN-Nummer
+ * Repräsentation des Materials Buch mit Titel, Autor und ISBN
  *
  * @author Aline Hoffmann
  */
@@ -38,8 +33,6 @@ public class Book {
         this._author = author;
         this._isbn = isbn;
     }
-
-
 
     public String getTitle() {
         return _title;

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class BookService {
-   @Autowired // dient der Erzeugung des BookRepository, weil man ein Interface nicht instanziieren kann
+   @Autowired
     private BookRepository allBooks;
 
     public BookService(BookRepository allBooks) {
