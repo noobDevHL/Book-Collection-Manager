@@ -2,6 +2,7 @@ package com.example.bibliophilia;
 
 import org.hibernate.validator.internal.util.Contracts;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -21,24 +22,24 @@ public class dvIsbnNumber implements Serializable {
 
     @NotEmpty(message = "ISBN muss angegeben werden")
     @NotBlank(message = "ISBN darf nicht nur aus Leerzeichen bestehen")
-    // @Pattern(regexp = "(978-3-)\\d{3}-\\d{5}-\\d", message = "Die ISBN muss dem Muster 978-3-xxx-xxxxx-x entsprechen.")
+    // @Column(unique=true, name = "isbn")
     private String _isbn;
 
     public dvIsbnNumber() {
     }
 
     private dvIsbnNumber(String isbn) {
-        Contracts.assertTrue(isValid(isbn), "Die ISBN muss dem Muster 978-3-xxx-xxxxx-x entsprechen.");
+        Contracts.assertTrue(isValid(isbn), "Die ISBN muss dem Muster 978-x-xxx-xxxxx-x entsprechen.");
         _isbn = isbn;
     }
 
     public static dvIsbnNumber valueOf(String isbn) {
-        Contracts.assertTrue(isValid(isbn), "Die ISBN muss dem Muster 978-3-xxx-xxxxx-x entsprechen.");
+        Contracts.assertTrue(isValid(isbn), "Die ISBN muss dem Muster 978-x-xxx-xxxxx-x entsprechen.");
         return new dvIsbnNumber(isbn);
     }
 
     public static boolean isValid(String isbn) {
-        Pattern p = Pattern.compile("(978-3-)\\d{3}-\\d{5}-\\d");
+        Pattern p = Pattern.compile("(978-)\\d-\\d{3}-\\d{5}-\\d");
         Matcher m = p.matcher(isbn);
         return m.matches();
     }

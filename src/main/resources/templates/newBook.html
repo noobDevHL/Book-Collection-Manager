@@ -27,7 +27,7 @@
 
     <!-- Formular neues Buch -->
     <form method="post" th:object="${bookDto}" th:action="@{addBook}">
-        <fieldset>
+        <fieldset class="mt-5">
             <legend>Neues Buch hinzufügen</legend>
             <div class="row">
                 <div class="col-md-3">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="form-group">
+                    <div class="ml-0 form-group">
                 <input type="text" class="form-control" th:field="*{isbn}" placeholder="ISBN">
                 <p th:errors="*{isbn}" class="alert alert-danger"/>
                     </div>

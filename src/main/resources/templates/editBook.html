@@ -27,7 +27,7 @@
 
   <!-- Formular Buch bearbeiten -->
   <form method="post" th:object="${bookDto}" th:action="@{saveBook}">
-    <fieldset>
+    <fieldset class="mt-5">
       <legend>Buch bearbeiten</legend>
       <div class="row">
         <div class="col-md-3">
@@ -53,7 +53,7 @@
       <input type="submit" class="btn btn-primary">
     </fieldset>
   </form>
-  </div>
+</div>
 <!-- Footer -->
 <footer th:replace="footer :: footer"></footer>
 </body>

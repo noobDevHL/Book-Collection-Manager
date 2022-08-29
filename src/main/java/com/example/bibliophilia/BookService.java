@@ -20,6 +20,18 @@ public class BookService {
 
     public BookService(BookRepository allBooks) {
         this.allBooks = allBooks;
+        this.allBooks.save(new Book("Reise um den Mond",
+                "Jules Verne",
+                dvIsbnNumber.valueOf("978-3-453-31583-9")));
+        this.allBooks.save(new Book("In 80 Tagen um die Welt",
+                "Jules Verne",
+                dvIsbnNumber.valueOf("978-3-257-20246-5")));
+        this.allBooks.save(new Book("Auris",
+                "Sebastian Fitzek",
+                dvIsbnNumber.valueOf("978-3-426-30840-0")));
+        this.allBooks.save(new Book("Der Marsianer",
+                "Andy Weir",
+                dvIsbnNumber.valueOf("978-3-596-52241-5")));
     }
 
     public void add(@Valid BookDto bookDto) {

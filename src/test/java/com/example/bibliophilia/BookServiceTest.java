@@ -36,6 +36,14 @@ public class BookServiceTest {
     }
 
     @Test
+    public void booksSortedByAuthor() {
+        List<Book> sortedBooks = bookService.sortBy("author");
+        assertEquals(List.of("Jules Verne", "Jules Verne", "Sebastian Fitzek"), sortedBooks.stream().
+                map(Book::getAuthor).
+                collect(Collectors.toList()));
+    }
+
+    @Test
     public void testTwoIsbnEqual() {
         Book book1 = new Book("Reise um den Mond", "Jules Verne", dvIsbnNumber.valueOf("978-3-123-12345-0"));
         Book book2 = new Book("In 80 Tagen um die Welt", "Jules Verne", dvIsbnNumber.valueOf("978-3-123-12345-0"));
