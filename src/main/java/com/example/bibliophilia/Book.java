@@ -1,8 +1,12 @@
 package com.example.bibliophilia;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
@@ -19,14 +23,17 @@ public class Book {
     private Long id; // wird durch Annotationen automatisch erzeugt
 
     private String _title;
+
     private String _author;
-    private String _isbn;
+
+    @Embedded
+    private dvIsbnNumber _isbn;
 
     public Book() {
         // required by Hibernate
     }
 
-    public Book(String title, String author, String isbn) {
+    public Book(String title, String author, dvIsbnNumber isbn) {
         this._title = title;
         this._author = author;
         this._isbn = isbn;
@@ -50,11 +57,11 @@ public class Book {
         this._author = author;
     }
 
-    public String getIsbn() {
+    public dvIsbnNumber getIsbn() {
         return _isbn;
     }
 
-    public void setIsbn(String isbn) {
+    public void setIsbn(dvIsbnNumber isbn) {
         this._isbn = isbn;
     }
 

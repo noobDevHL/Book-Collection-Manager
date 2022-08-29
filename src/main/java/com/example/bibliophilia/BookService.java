@@ -1,16 +1,11 @@
 package com.example.bibliophilia;
 
-import net.bytebuddy.TypeCache;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -20,8 +15,12 @@ import java.util.stream.Collectors;
  */
 @Service
 public class BookService {
-    @Autowired // dient der Erzeugung des BookRepository, weil man ein Interface nicht instanziieren kann
+   @Autowired // dient der Erzeugung des BookRepository, weil man ein Interface nicht instanziieren kann
     private BookRepository allBooks;
+
+    public BookService(BookRepository allBooks) {
+        this.allBooks = allBooks;
+    }
 
     /**
      * Funktion um ein neues Buch ins BookRepository hinzuzufuegen
@@ -109,7 +108,7 @@ public class BookService {
      * @param bookDto
      * @return
      */
-    private Book convertDtoToBook(BookDto bookDto) {
+    public Book convertDtoToBook(BookDto bookDto) {
         Book book = new Book();
         book.setId(bookDto.getId());
         book.setTitle(bookDto.getTitle());
@@ -119,7 +118,7 @@ public class BookService {
     }
 
 
-    private BookDto convertBookToDto(Book book) {
+    public BookDto convertBookToDto(Book book) {
         BookDto bookDto = new BookDto();
         bookDto.setId(book.getId());
         bookDto.setTitle(book.getTitle());

@@ -32,11 +32,11 @@
             <div class="mb-3">
                 <input type="text" class="form-control" th:field="*{id}" hidden>
                 <input type="text" class="form-control" th:field="*{title}" placeholder="Titel">
-                <p th:errors="*{title}"/>
+                <p th:errors="*{title}" class="alert alert-danger"/>
                 <input type="text" class="form-control" th:field="*{author}" placeholder="Autor">
-                <p th:errors="*{author}"/>
+                <p th:errors="*{author}" class="alert alert-danger"/>
                 <input type="text" class="form-control" th:field="*{isbn}" placeholder="ISBN">
-                <p th:errors="*{isbn}"/>
+                <p th:errors="*{isbn}" class="alert alert-danger"/>
                 <input type="submit" class="btn btn-primary">
             </div>
         </fieldset>

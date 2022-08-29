@@ -26,9 +26,8 @@ public class BookController {
     private BookService _bookService;
 
     /**
-     * Funktion um alle Buecher inklusiver Filter nach Attribut nach Get-Request an die View zu uebergeben
+     * Funktion um alle Buecher nach Get-Request an die View zu uebergeben
      * @param model
-     * @param filter
      * @return anzuzeigende View
      */
     @GetMapping("/allBooks")
@@ -94,10 +93,8 @@ public class BookController {
     @PostMapping("/addBook")
     public String addNewBook(@ModelAttribute @Valid BookDto bookDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-           bindingResult.getFieldError();
             return "newBook";
         }
-        model.addAttribute(bookDto);
         _bookService.add(bookDto);
         return "redirect:/allBooks";
     }

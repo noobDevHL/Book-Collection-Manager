@@ -1,5 +1,6 @@
 package com.example.bibliophilia;
 
+import javax.persistence.Embedded;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -19,12 +20,11 @@ public class BookDto {
     private String title;
 
     @NotEmpty(message = "Autor muss angegeben werden")
-    @NotBlank(message = "Titel darf nicht nur aus Leerzeichen bestehen")
+    @NotBlank(message = "Autor darf nicht nur aus Leerzeichen bestehen")
     private String author;
 
-    @NotEmpty(message = "ISBN muss angegeben werden")
-    @NotBlank(message = "ISBN darf nicht nur aus Leerzeichen bestehen")
-    private String isbn;
+    @Embedded
+    private dvIsbnNumber isbn;
 
     public String getTitle() {
         return title;
@@ -42,11 +42,11 @@ public class BookDto {
         this.author = author;
     }
 
-    public String getIsbn() {
+    public dvIsbnNumber getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(String isbn) {
+    public void setIsbn(dvIsbnNumber isbn) {
         this.isbn = isbn;
     }
 
