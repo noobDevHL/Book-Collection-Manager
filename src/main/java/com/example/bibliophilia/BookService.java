@@ -22,27 +22,18 @@ public class BookService {
         this.allBooks = allBooks;
     }
 
-    /**
-     * Funktion um ein neues Buch ins BookRepository hinzuzufuegen
-     * @param bookDto Buch-Objekt, dass hinzugefuegt werden soll
-     */
     public void add(@Valid BookDto bookDto) {
         allBooks.save(convertDtoToBook(bookDto));
     }
 
-    /**
-     * Funktion um alle Buecher aus dem BookRepository zu lesen
-     * per default alphabetisch nach Titel sortiert
-     * @return Liste mit allen Buechern
-     */
     public List<Book> getAllBooks() {
             return allBooks.findAll();
         }
 
     /**
-     * Funktion zum Filtern der Buecher nach Autor
-     * @param search Name des Autors, nach dem gefiltert werden soll
-     * @return Liste mit Buechern vom ausgewaehlten Autor
+     * @param search Suchbegriff
+     * @param filter kann Title, Autor oder leer sein; leer entspricht Autor
+     * @return Liste mit Buechern, die mit Suchbegriff im Titel oder Autor uebereinstimmen
      */
     public List<Book> filterBy(String search, String filter) {
         List<Book> filteredBooks = getAllBooks();
@@ -57,9 +48,8 @@ public class BookService {
     }
 
     /**
-     * Funktion zum alphabetischen Sortieren der Buecher nach Autorenvorname
-     * @param sort
-     * @return sortierte Liste
+     * @param sort kann Titel, Autor oder leer sein; leer entspricht Titel
+     * @return alphabetisch aufsteigend sortierte Liste
      */
     public List<Book> sortBy(String sort) {
         List<Book> sortedBooks = getAllBooks();
@@ -75,40 +65,22 @@ public class BookService {
         return sortedBooks;
     }
 
-    /**
-     * Funktion zum Loeschen eines Buchs
-     * @param id ID des Buchs, das geloescht werden soll
-     */
     public void deleteBook(Long id) {
         allBooks.deleteById(id);
     }
 
-    /**
-     * Funktion um ein Buch anhand der ID zu suchen
-     * @param id
-     * @return das gesuchte Buch
-     */
     public Book findBook(Long id) {
         Book book = allBooks.findById(id).get();
         return book;
     }
 
-    /**
-     * Funktion um eine Aenderung an einem existierenden Buch zu speichern
-     * @param bookDto
-     */
     public void saveBook(@Valid BookDto bookDto) {
         Book book = allBooks.findById(bookDto.getId()).get();
         book = convertDtoToBook(bookDto);
         allBooks.save(book);
     }
 
-    /**
-     * Funktion zum Wandeln des Materials BookDto zu einer Entity Book
-     * @param bookDto
-     * @return
-     */
-    public Book convertDtoToBook(BookDto bookDto) {
+    private Book convertDtoToBook(BookDto bookDto) {
         Book book = new Book();
         book.setId(bookDto.getId());
         book.setTitle(bookDto.getTitle());
@@ -117,8 +89,7 @@ public class BookService {
         return book;
     }
 
-
-    public BookDto convertBookToDto(Book book) {
+    private BookDto convertBookToDto(Book book) {
         BookDto bookDto = new BookDto();
         bookDto.setId(book.getId());
         bookDto.setTitle(book.getTitle());

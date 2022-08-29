@@ -13,10 +13,11 @@ import java.util.regex.Pattern;
 
 /**
  * Diese Klasse repraesentiert einen Fachwert der ISBN eines Buches
+ *
+ * @author Aline Hoffmann
  */
 @Embeddable
 public class dvIsbnNumber implements Serializable {
-
 
     @NotEmpty(message = "ISBN muss angegeben werden")
     @NotBlank(message = "ISBN darf nicht nur aus Leerzeichen bestehen")

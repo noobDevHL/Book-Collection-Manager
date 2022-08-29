@@ -26,23 +26,35 @@
 <div class="container-fluid">
 
   <!-- Formular Buch bearbeiten -->
-
   <form method="post" th:object="${bookDto}" th:action="@{saveBook}">
     <fieldset>
       <legend>Buch bearbeiten</legend>
-      <div class="mb-3">
-        <input type="text" class="form-control" th:field="*{id}" hidden>
-        <input type="text" class="form-control" th:field="*{title}">
-        <p th:errors="*{title}"/>
-        <input type="text" class="form-control" th:field="*{author}">
-        <p th:errors="*{author}"/>
-        <input type="text" class="form-control" th:field="*{isbn}">
-        <p th:errors="*{isbn}"/>
-        <input type="submit" class="btn btn-primary">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" class="form-control" th:field="*{id}" hidden>
+            <input type="text" class="form-control" th:field="*{title}" placeholder="Titel">
+            <p th:errors="*{title}" class="alert alert-danger"/>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" class="form-control" th:field="*{author}" placeholder="Autor">
+            <p th:errors="*{author}" class="alert alert-danger"/>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <input type="text" class="form-control" th:field="*{isbn}" placeholder="ISBN">
+            <p th:errors="*{isbn}" class="alert alert-danger"/>
+          </div>
+        </div>
       </div>
+      <input type="submit" class="btn btn-primary">
     </fieldset>
   </form>
   </div>
-
+<!-- Footer -->
+<footer th:replace="footer :: footer"></footer>
 </body>
 </html>
