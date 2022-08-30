@@ -97,7 +97,7 @@ public class BookService {
         book.setId(bookDto.getId());
         book.setTitle(bookDto.getTitle());
         book.setAuthor(bookDto.getAuthor());
-        book.setIsbn(bookDto.getIsbn());
+        book.setIsbn(dvIsbnNumber.valueOf(bookDto.getIsbn()));
         return book;
     }
 
@@ -106,7 +106,7 @@ public class BookService {
         bookDto.setId(book.getId());
         bookDto.setTitle(book.getTitle());
         bookDto.setAuthor(book.getAuthor());
-        bookDto.setIsbn(book.getIsbn());
+        bookDto.setIsbn(book.getIsbn().toString());
         return  bookDto;
     }
 }

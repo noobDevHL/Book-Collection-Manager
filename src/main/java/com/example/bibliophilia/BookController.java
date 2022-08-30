@@ -62,13 +62,14 @@ public class BookController {
     }
 
     @GetMapping("/deleteBook/{id}")
-    public String deleteBook(@PathVariable("id") long id, Model model) {
+    public String deleteBook(@PathVariable("id") long id) {
         _bookService.deleteBook(id);
         return "redirect:/allBooks";
     }
 
     @PostMapping("/addBook")
-    public String addNewBook(@ModelAttribute @Valid BookDto bookDto, BindingResult bindingResult, Model model) {
+    public String addNewBook(@ModelAttribute BookDto bookDto, BindingResult bindingResult) {
+        validateIsbn(bookDto.getIsbn(), bindingResult);
         if (bindingResult.hasErrors()) {
             return "newBook";
         }
@@ -83,13 +84,19 @@ public class BookController {
     }
 
     @PostMapping("/editBook/saveBook")
-    public String saveBook(@ModelAttribute @Valid BookDto bookDto, BindingResult bindingResult, Model model) {
+    public String saveBook(@ModelAttribute @Valid BookDto bookDto, BindingResult bindingResult) {
+        validateIsbn(bookDto.getIsbn(), bindingResult);
         if (bindingResult.hasErrors()) {
-            bindingResult.getFieldError();
             return "editBook";
         }
         _bookService.saveBook(bookDto);
         return "redirect:/allBooks";
+    }
+
+    private void validateIsbn(String isbn, BindingResult bindingResult) {
+        if(!dvIsbnNumber.isValid(isbn)) {
+            bindingResult.rejectValue("isbn", "isbn.nichtValide");
+        }
     }
 
     /*

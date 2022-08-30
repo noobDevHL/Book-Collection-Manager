@@ -21,8 +21,8 @@ public class BookDto {
     @NotBlank(message = "Autor darf nicht nur aus Leerzeichen bestehen")
     private String author;
 
-    @Embedded
-    private dvIsbnNumber isbn;
+
+    private String isbn;
 
     public String getTitle() {
         return title;
@@ -40,11 +40,11 @@ public class BookDto {
         this.author = author;
     }
 
-    public dvIsbnNumber getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(dvIsbnNumber isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
