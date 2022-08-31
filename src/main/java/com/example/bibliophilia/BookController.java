@@ -67,6 +67,12 @@ public class BookController {
         return "redirect:/allBooks";
     }
 
+    @GetMapping("/editBook/{id}")
+    public String editBook(@PathVariable("id") long id, Model model) {
+        model.addAttribute("bookDto", _bookService.findBook(id));
+        return "editBook";
+    }
+
     @PostMapping("/addBook")
     public String addNewBook(@ModelAttribute @Valid BookDto bookDto, BindingResult bindingResult) {
         validateIsbn(bookDto.getIsbn(), bindingResult);
@@ -75,12 +81,6 @@ public class BookController {
         }
         _bookService.add(bookDto);
         return "redirect:/allBooks";
-    }
-
-    @GetMapping("/editBook/{id}")
-    public String editBook(@PathVariable("id") long id, Model model) {
-        model.addAttribute("bookDto", _bookService.findBook(id));
-        return "editBook";
     }
 
     @PostMapping("/editBook/saveBook")

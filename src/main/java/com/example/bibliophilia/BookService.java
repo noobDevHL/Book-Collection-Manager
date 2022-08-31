@@ -81,6 +81,8 @@ public class BookService {
         return sortedBooks;
     }
 
+    //TODO: Sortierung einer gefilterten Liste
+
    // ---------------- Mapper-Methoden ---------------
     private Book convertDtoToBook(BookDto bookDto) {
         Book book = new Book();
