@@ -43,12 +43,7 @@ public class BookServiceTest {
                 collect(Collectors.toList()));
     }
 
-    @Test
-    public void testTwoIsbnEqual() {
-        Book book1 = new Book("Reise um den Mond", "Jules Verne", dvIsbnNumber.valueOf("978-3-123-12345-0"));
-        Book book2 = new Book("In 80 Tagen um die Welt", "Jules Verne", dvIsbnNumber.valueOf("978-3-123-12345-0"));
-        assertEquals(book1.getIsbn(), book2.getIsbn());
-    }
+
 
     //isbn testen in dvIsbnNumberTest; auch pattern testen
 }

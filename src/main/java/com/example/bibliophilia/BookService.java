@@ -23,6 +23,7 @@ public class BookService {
     }
 
     public void add(@Valid BookDto bookDto) {
+        // TODO: check, ob ISBN schon im Repository
         allBooks.save(convertDtoToBook(bookDto));
     }
 
@@ -30,9 +31,24 @@ public class BookService {
             return allBooks.findAll();
         }
 
+    public void deleteBook(Long id) {
+        allBooks.deleteById(id);
+    }
+
+    public Book findBook(Long id) {
+        Book book = allBooks.findById(id).get();
+        return book;
+    }
+
+    public void saveBook(@Valid BookDto bookDto) {
+        // TODO: check, ob ISBN schon im Repository
+        Book book = convertDtoToBook(bookDto);
+        allBooks.save(book);
+    }
+
     /**
      * @param search Suchbegriff
-     * @param filter kann Title, Autor oder leer sein; leer entspricht Autor
+     * @param filter kann Title, Autor oder leer sein; leer entspricht Filtern nach Autor
      * @return Liste mit Buechern, die mit Suchbegriff im Titel oder Autor uebereinstimmen
      */
     public List<Book> filterBy(String search, String filter) {
@@ -48,7 +64,7 @@ public class BookService {
     }
 
     /**
-     * @param sort kann Titel, Autor oder leer sein; leer entspricht Titel
+     * @param sort kann Titel, Autor oder leer sein; leer entspricht Sortierung nach Titel
      * @return alphabetisch aufsteigend sortierte Liste
      */
     public List<Book> sortBy(String sort) {
@@ -65,21 +81,7 @@ public class BookService {
         return sortedBooks;
     }
 
-    public void deleteBook(Long id) {
-        allBooks.deleteById(id);
-    }
-
-    public Book findBook(Long id) {
-        Book book = allBooks.findById(id).get();
-        return book;
-    }
-
-    public void saveBook(@Valid BookDto bookDto) {
-        Book book = allBooks.findById(bookDto.getId()).get();
-        book = convertDtoToBook(bookDto);
-        allBooks.save(book);
-    }
-
+   // ---------------- Mapper-Methoden ---------------
     private Book convertDtoToBook(BookDto bookDto) {
         Book book = new Book();
         book.setId(bookDto.getId());
