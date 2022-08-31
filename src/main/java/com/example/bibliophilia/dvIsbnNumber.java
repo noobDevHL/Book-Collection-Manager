@@ -17,8 +17,6 @@ import java.util.regex.Pattern;
  */
 public class dvIsbnNumber implements Serializable{
 
-
-    // @Column(unique=true, name = "isbn")
     private String _isbn;
 
     public dvIsbnNumber() {

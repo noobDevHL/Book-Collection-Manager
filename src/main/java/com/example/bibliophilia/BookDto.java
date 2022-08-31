@@ -18,7 +18,6 @@ public class BookDto {
     @NotBlank(message = "Autor darf nicht leer sein oder nur aus Leerzeichen bestehen")
     private String author;
 
-
     @NotBlank(message = "ISBN darf nicht leer sein oder nur aus Leerzeichen bestehen")
     //@javax.validation.constraints.Pattern()
     private String isbn;

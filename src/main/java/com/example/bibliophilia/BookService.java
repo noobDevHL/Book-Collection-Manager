@@ -22,7 +22,7 @@ public class BookService {
         this.allBooks = allBooks;
     }
 
-    public void add(@Valid BookDto bookDto) {
+    public void add(BookDto bookDto) {
         // TODO: check, ob ISBN schon im Repository
         allBooks.save(convertDtoToBook(bookDto));
     }
@@ -40,7 +40,7 @@ public class BookService {
         return book;
     }
 
-    public void saveBook(@Valid BookDto bookDto) {
+    public void saveBook(BookDto bookDto) {
         // TODO: check, ob ISBN schon im Repository
         Book book = convertDtoToBook(bookDto);
         allBooks.save(book);

@@ -21,7 +21,6 @@ public class Book {
 
     private String _author;
 
-
     private dvIsbnNumber _isbn;
 
     public Book() {
