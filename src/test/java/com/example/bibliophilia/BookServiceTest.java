@@ -49,4 +49,6 @@ public class BookServiceTest {
         Book book2 = new Book("In 80 Tagen um die Welt", "Jules Verne", dvIsbnNumber.valueOf("978-3-123-12345-0"));
         assertEquals(book1.getIsbn(), book2.getIsbn());
     }
+
+    //isbn testen in dvIsbnNumberTest; auch pattern testen
 }

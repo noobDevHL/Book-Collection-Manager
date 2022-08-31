@@ -30,27 +30,31 @@
     <fieldset class="mt-5">
       <legend>Buch bearbeiten</legend>
       <div class="row">
-        <div class="col-md-3">
-          <div class="form-group">
+        <div class="col-md-3 d-flex justify-content-between">
+          <div class="form-group ml-0">
             <input type="text" class="form-control" th:field="*{id}" hidden>
             <input type="text" class="form-control" th:field="*{title}" placeholder="Titel">
             <p th:errors="*{title}" class="alert alert-danger"/>
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="form-group">
+        <div class="col-md-3 d-flex justify-content-between">
+          <div class="form-group ml-0">
             <input type="text" class="form-control" th:field="*{author}" placeholder="Autor">
             <p th:errors="*{author}" class="alert alert-danger"/>
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <input type="text" class="form-control" th:field="*{isbn}" placeholder="ISBN">
+        <div class="col-md-3 d-flex justify-content-between">
+          <div class="form-group ml-0">
+            <input type="text" class="form-control" th:field="*{isbn}" placeholder="ISBN (978-x-xxx-xxxxx-x)">
             <p th:errors="*{isbn}" class="alert alert-danger"/>
           </div>
         </div>
+        <div class="col-md-3 d-flex justify-content-between">
+          <div class="form-group ml-0">
+            <button type="submit" class="btn btn-primary">Änderungen speichern</button>
+          </div>
       </div>
-      <input type="submit" class="btn btn-primary">
+
     </fieldset>
   </form>
 </div>

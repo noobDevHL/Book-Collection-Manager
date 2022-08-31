@@ -1,8 +1,6 @@
 package com.example.bibliophilia;
 
-import javax.persistence.Embedded;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 /**
  * Data-Transfer-Objekt der Klasse Book
@@ -13,12 +11,10 @@ public class BookDto {
 
     private Long id;
 
-    @NotEmpty(message = "Titel muss angegeben werden")
-    @NotBlank(message = "Titel darf nicht nur aus Leerzeichen bestehen")
+    @NotBlank(message = "Titel darf nicht leer sein oder nur aus Leerzeichen bestehen")
     private String title;
 
-    @NotEmpty(message = "Autor muss angegeben werden")
-    @NotBlank(message = "Autor darf nicht nur aus Leerzeichen bestehen")
+    @NotBlank(message = "Autor darf nicht leer sein oder nur aus Leerzeichen bestehen")
     private String author;
 
 

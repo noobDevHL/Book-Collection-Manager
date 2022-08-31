@@ -68,10 +68,10 @@ public class BookController {
     }
 
     @PostMapping("/addBook")
-    public String addNewBook(@ModelAttribute BookDto bookDto, BindingResult bindingResult) {
+    public String addNewBook(@ModelAttribute @Valid BookDto bookDto, BindingResult bindingResult) {
         validateIsbn(bookDto.getIsbn(), bindingResult);
         if (bindingResult.hasErrors()) {
-            return "newBook";
+            return "allBooks";
         }
         _bookService.add(bookDto);
         return "redirect:/allBooks";

@@ -2,11 +2,9 @@ package com.example.bibliophilia;
 
 import org.hibernate.validator.internal.util.Contracts;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-//import javax.validation.constraints.Pattern;
+
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -17,11 +15,9 @@ import java.util.regex.Pattern;
  *
  * @author Aline Hoffmann
  */
-@Embeddable
 public class dvIsbnNumber implements Serializable {
 
-    @NotEmpty(message = "ISBN muss angegeben werden")
-    @NotBlank(message = "ISBN darf nicht nur aus Leerzeichen bestehen")
+    @NotBlank(message = "ISBN darf nicht leer sein oder nur aus Leerzeichen bestehen")
     // @Column(unique=true, name = "isbn")
     private String _isbn;
 
