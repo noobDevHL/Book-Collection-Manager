@@ -69,7 +69,7 @@ public class BookController {
 
     @GetMapping("/editBook/{id}")
     public String editBook(@PathVariable("id") long id, Model model) {
-        model.addAttribute("bookDto", _bookService.findBook(id));
+        model.addAttribute("bookDto", _bookService.findBook(id)); // Material zu DTO wandeln
         return "editBook";
     }
 

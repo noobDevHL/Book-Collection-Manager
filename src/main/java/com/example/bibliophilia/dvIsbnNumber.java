@@ -15,12 +15,14 @@ import java.util.regex.Pattern;
  *
  * @author Aline Hoffmann
  */
-public class dvIsbnNumber {
+public class dvIsbnNumber implements Serializable{
 
 
     // @Column(unique=true, name = "isbn")
     private String _isbn;
 
+    public dvIsbnNumber() {
+    }
 
     private dvIsbnNumber(String isbn) {
         Contracts.assertTrue(isValid(isbn), "Die ISBN muss dem Muster 978-x-xxx-xxxxx-x entsprechen.");

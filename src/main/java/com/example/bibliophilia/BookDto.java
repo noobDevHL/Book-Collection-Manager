@@ -11,6 +11,7 @@ public class BookDto {
 
     private Long id;
 
+    // Fehlermeldungen in messages.properties?
     @NotBlank(message = "Titel darf nicht leer sein oder nur aus Leerzeichen bestehen")
     private String title;
 
@@ -18,6 +19,8 @@ public class BookDto {
     private String author;
 
 
+    @NotBlank(message = "ISBN darf nicht leer sein oder nur aus Leerzeichen bestehen")
+    //@javax.validation.constraints.Pattern()
     private String isbn;
 
     public String getTitle() {
