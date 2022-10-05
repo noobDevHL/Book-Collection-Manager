@@ -21,6 +21,7 @@ public class Book {
 
     private String _author;
 
+    @Embedded
     private dvIsbnNumber _isbn;
 
     public Book() {
